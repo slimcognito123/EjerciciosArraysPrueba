@@ -20,18 +20,18 @@ public class ArrayListEmpleados {
         boolean continuar = true;
         do {
             System.out.println("1.añadir empleado:\n2.eliminar empleado\n3.buscar empleado por NIF\n4.media de hijos\n5.informacion de un empleado en concreto\n0.Salir");
-            try{
+            try {
                 Scanner scan = new Scanner(System.in);
                 int envio = scan.nextInt();
-                continuar=opcion(envio);
-            }catch(InputMismatchException e){
+                continuar = opcion(envio);
+            } catch (InputMismatchException e) {
                 System.out.println("introduce un numero para seleccionar una opcion");
             }
-        }while (continuar);
+        } while (continuar);
     }
 
     private static boolean opcion(int envio) {
-        switch (envio){
+        switch (envio) {
             case 1:
                 anadirEmpleado();
                 break;
@@ -56,39 +56,75 @@ public class ArrayListEmpleados {
     }
 
     private static void mostrarEmpleados() {
-        for (Empleado empleado:alday){
+        for (Empleado empleado : alday) {
             System.out.println(empleado.toString());
         }
     }
 
     private static void informacionEmpleado() {
+        if (buscarNif() != null) {
+            System.out.println(buscarNif().toString());
+        }
     }
 
     private static void mediaHijos() {
-        int hijos=0;
+        int hijos = 0;
         for (int i = 0; i < alday.size(); i++) {
-            hijos+=alday.get(i).getHijos();
+            hijos += alday.get(i).getHijos();
         }
-        if (alday.size()>0)
-            System.out.println("media de hijos:"+(hijos/alday.size()));
+        if (alday.size() > 0)
+            System.out.println("media de hijos:" + (hijos / alday.size()));
         else System.out.println("no hay empleados");
     }
 
-    private static void buscarNif() {
-
+    private static Empleado buscarNif() {
+        System.out.println("introduce NIF del empleado a buscar:");
+        Scanner scan = new Scanner(System.in);
+        String dni = scan.nextLine();
+        for (Empleado empleado : alday) {
+            if (empleado.getNIF().equals(dni)) {
+                System.out.println("usuario encontrado");
+                return empleado;
+            } else {
+                System.out.println("usuario no encontrado o DNI mal introducido");
+            }
+        }
+        return null;
     }
 
     private static void borrarEmpleado() {
-
+        alday.remove(buscarNif());
+        System.out.println("usuario eliminado");
     }
 
     private static void anadirEmpleado() {
-
+        boolean error = false;
+        Empleado empleado = new Empleado();
+        do {
+            System.out.println("introduce NIF del empleado:");
+            Scanner scan = new Scanner(System.in);
+            String dni = scan.nextLine();
+            empleado.setNIF(dni);
+        } while (error);
+        do {
+            System.out.println("introduce Sueldo del empleado:");
+            Scanner scan = new Scanner(System.in);
+            String dni = scan.nextLine();
+            empleado.setNIF(dni);
+        } while (error);
+        do {
+            System.out.println("introduce NIF del empleado:");
+            Scanner scan = new Scanner(System.in);
+            String dni = scan.nextLine();
+            empleado.setNIF(dni);
+        } while (error);
+        do {
+            System.out.println("introduce NIF del empleado:");
+            Scanner scan = new Scanner(System.in);
+            String dni = scan.nextLine();
+            empleado.setNIF(dni);
+        } while (error);
+        
     }
 
-    //Methods
-
-    public void insertEmpleados(){
-
-    }
 }
