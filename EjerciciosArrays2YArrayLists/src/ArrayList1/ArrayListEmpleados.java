@@ -107,24 +107,54 @@ public class ArrayListEmpleados {
             empleado.setNIF(dni);
         } while (error);
         do {
-            System.out.println("introduce Sueldo del empleado:");
-            Scanner scan = new Scanner(System.in);
-            String dni = scan.nextLine();
-            empleado.setNIF(dni);
+            error = false;
+            try {
+                System.out.println("introduce Sueldo del empleado:");
+                Scanner scan = new Scanner(System.in);
+                float sueldo = scan.nextFloat();
+                empleado.setSueldo(sueldo);
+            } catch (Exception e) {
+                System.out.println("sueldo no valido");
+                error = true;
+            }
         } while (error);
         do {
-            System.out.println("introduce NIF del empleado:");
-            Scanner scan = new Scanner(System.in);
-            String dni = scan.nextLine();
-            empleado.setNIF(dni);
+            error = false;
+            try {
+                System.out.println("introduce IRPF del empleado:");
+                Scanner scan = new Scanner(System.in);
+                int irpf = scan.nextInt();
+                empleado.setIRPF(irpf);
+            } catch (Exception e) {
+                System.out.println("porcentaje de IRPF no valido");
+                error = true;
+            }
         } while (error);
         do {
-            System.out.println("introduce NIF del empleado:");
-            Scanner scan = new Scanner(System.in);
-            String dni = scan.nextLine();
-            empleado.setNIF(dni);
+            error = false;
+            try {
+                System.out.println("introduce horas extras del mes del empleado:");
+                Scanner scan = new Scanner(System.in);
+                int horas = scan.nextInt();
+                empleado.setHorasExtraMes(horas);
+            } catch (Exception e) {
+                System.out.println("horas extras del mes no valido");
+                error = true;
+            }
         } while (error);
-        
+        do {
+            error = false;
+            try {
+                System.out.println("introduce numero de hijos del empleado:");
+                Scanner scan = new Scanner(System.in);
+                int hijos = scan.nextInt();
+                empleado.setHijos(hijos);
+            } catch (Exception e) {
+                System.out.println("numero de hijos no valido");
+                error = true;
+            }
+        } while (error);
+        alday.add(empleado);
     }
 
 }
