@@ -47,10 +47,18 @@ public class ArrayListEmpleados {
             case 5:
                 informacionEmpleado();
                 break;
+            case 99:
+                mostrarEmpleados();
             case 0:
                 return false;
         }
         return true;
+    }
+
+    private static void mostrarEmpleados() {
+        for (Empleado empleado:alday){
+            System.out.println(empleado.toString());
+        }
     }
 
     private static void informacionEmpleado() {
@@ -59,8 +67,11 @@ public class ArrayListEmpleados {
     private static void mediaHijos() {
         int hijos=0;
         for (int i = 0; i < alday.size(); i++) {
-
+            hijos+=alday.get(i).getHijos();
         }
+        if (alday.size()>0)
+            System.out.println("media de hijos:"+(hijos/alday.size()));
+        else System.out.println("no hay empleados");
     }
 
     private static void buscarNif() {
