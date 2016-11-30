@@ -124,7 +124,7 @@ public class ArrayListEmpleados {
             String dni = scan.nextLine();
             empleado.setNIF(dni);
         } while (error);
-        
+
     }
 
 }
