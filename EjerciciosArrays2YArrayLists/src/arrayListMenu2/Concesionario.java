@@ -12,6 +12,9 @@ import java.util.Scanner;
 public class Concesionario {
     Menu menu;
     ArrayList<Coche> listaCoches;
+    public static void main(String[] args){
+        new Concesionario();
+    }
 
     public Concesionario() {
         menu= new Menu();
@@ -23,6 +26,7 @@ public class Concesionario {
         menu.addMenu("5.Mostrar coches de forma ordenada");
         menu.addMenu("0.Salir");
         System.out.println("bienvenido al controlador:");
+        introducirDatos(listaCoches);
         boolean continuar = true;
         do {
             menu.showMenu();
@@ -37,6 +41,16 @@ public class Concesionario {
         } while (continuar);
     }
 
+    private void introducirDatos(ArrayList<Coche> listaCoches) {
+        listaCoches.add(new Coche("1234asd","mazda","asdads",2000));
+        listaCoches.add(new Coche("4524eew","cytroen","c4",4000));
+        listaCoches.add(new Coche("2121efb","wqeqwe","qwerty",8000));
+        listaCoches.add(new Coche("9999zzz","mazda","asdads",6000));
+        for (Coche coche : listaCoches) {
+            coche.toString();
+        }
+    }
+
     private boolean opcion(int envio) {
         switch (envio) {
             case 1:
@@ -45,13 +59,13 @@ public class Concesionario {
             case 2:
                 cochesPorMarca();
                 break;
-            case 3:
+            case 5:
                 cochesPorKilometro();
                 break;
             case 4:
                 cocheMasKilometros();
                 break;
-            case 5:
+            case 3:
                 verCochesPorKilometros();
                 break;
             case 0:
@@ -89,11 +103,23 @@ public class Concesionario {
         }else{
             System.out.println("no existen coches");
         }
-
     }
 
     private void cochesPorKilometro() {
-
+        for (int i = 1; i <listaCoches.size() ; i++) {
+            for (int j = i; j < listaCoches.size(); j++) {
+                if (listaCoches.get(j-1).getKilometros()>listaCoches.get(j).getKilometros()){
+                    Coche cocheAux= listaCoches.get(j-1);
+                    listaCoches.add(j-1,listaCoches.get(j));
+                    listaCoches.remove(j);
+                    listaCoches.add(j,cocheAux);
+                    listaCoches.remove(j+1);
+                }
+            }
+        }
+        for (Coche coche : listaCoches) {
+            coche.toString();
+        }
     }
 
     private void cochesPorMarca() {
